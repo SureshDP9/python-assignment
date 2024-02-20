@@ -1,0 +1,40 @@
+version: '1'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'mydatabase'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3307:3306'
+    volumes:
+      - './data:/var/lib/mysql'
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      FLASK_ENV : production
+
+  product-service:
+    build: ./product-service
+    ports:
+      - "5002:5002"
+    depends_on:
+      - db
+    environment:
+      FLASK_ENV : production
+
+  order-service:
+    build: ./order-service
+    ports:
+      - "5003:5003"
+    depends_on:
+      - db
+    environment:
+      FLASK_ENV : production
