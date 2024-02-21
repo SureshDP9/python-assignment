@@ -16,6 +16,7 @@ if os.path.exists(dotenv_path):
 app = Flask(__name__)
 
 print("environment  : ***************", os.getenv('FLASK_ENV'),"****************")
+#open(os.environ.get('SQLALCHEMY_DATABASE_URI_FILE')).read().strip()
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 app.config['JWT_HEADER_TYPE'] = os.getenv('JWT_HEADER_TYPE')
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(minutes=int(os.getenv('JWT_EXPIRATION_MINUTES', 30)))
