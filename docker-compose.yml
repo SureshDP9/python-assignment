@@ -38,3 +38,4 @@ services:
       - db
     environment:
       FLASK_ENV : production
+      PRODUCT_SERVICE_URL : http://product-service:5002/product/
